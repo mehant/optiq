@@ -207,6 +207,7 @@ public class PlannerImpl implements Planner {
             createRexBuilder());
     sqlToRelConverter.setTrimUnusedFields(false);
     rel = sqlToRelConverter.convertQuery(validatedSqlNode, false, true);
+    rel = sqlToRelConverter.decorrelate(validatedSqlNode, rel);
     state = State.STATE_5_CONVERTED;
     return rel;
   }
